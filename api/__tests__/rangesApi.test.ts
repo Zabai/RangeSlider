@@ -2,6 +2,10 @@ import {
   FIXED_RANGES_API_RESPONSE,
   NORMAL_RANGES_API_RESPONSE,
 } from "../../__mocks__/ranges";
+import {
+  fixedRangesApiSchema,
+  normalRangesApiSchema,
+} from "../../schemas/ranges";
 import { fetchJson } from "../../utils/fetch";
 import * as random from "../../utils/random";
 import { getFixedRangeApi, getNormalRangeApi } from "../rangesApi";
@@ -22,8 +26,10 @@ describe("API - Ranges", () => {
 
   it("get fixed range from api", async () => {
     fetchJsonMock.mockResolvedValueOnce(FIXED_RANGES_API_RESPONSE);
+    const schemaSpy = jest.spyOn(fixedRangesApiSchema, "validate");
     const range = await getFixedRangeApi();
 
+    expect(schemaSpy).toHaveBeenCalledWith(FIXED_RANGES_API_RESPONSE);
     expect(randomItemSpy).toHaveBeenCalledWith(FIXED_RANGES_API_RESPONSE);
     expect(FIXED_RANGES_API_RESPONSE).toContain(range);
   });
@@ -40,8 +46,10 @@ describe("API - Ranges", () => {
 
   it("get normal range from api", async () => {
     fetchJsonMock.mockResolvedValue(NORMAL_RANGES_API_RESPONSE);
+    const schemaSpy = jest.spyOn(normalRangesApiSchema, "validate");
     const range = await getNormalRangeApi();
 
+    expect(schemaSpy).toHaveBeenCalledWith(NORMAL_RANGES_API_RESPONSE);
     expect(randomItemSpy).toHaveBeenCalled();
     expect(NORMAL_RANGES_API_RESPONSE).toContain(range);
   });
