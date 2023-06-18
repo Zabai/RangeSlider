@@ -1,11 +1,6 @@
 import { fireEvent, render } from "@testing-library/react";
 import { RangeSlider } from "../RangeSlider";
-import { EditableLabel } from "../../EditableLabel/EditableLabel";
-import { getClosestValueInArray } from "../../../utils/array";
 
-/* jest.mock("../../EditableLabel/EditableLabel", () => ({
-  EditableLabel: () => <div></div>,
-})); */
 const MIN_ARIA_LABEL = "Minimum price";
 const MAX_ARIA_LABEL = "Maximum price";
 
