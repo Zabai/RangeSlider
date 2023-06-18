@@ -2,6 +2,7 @@ import { fireEvent, render } from "@testing-library/react";
 import { EditableLabel } from "../EditableLabel";
 
 describe("Components - Editable label", () => {
+  const label = "label";
   const onEdit = jest.fn();
   const value = "hello";
 
@@ -38,5 +39,21 @@ describe("Components - Editable label", () => {
 
     expect(onEdit).toHaveBeenCalledWith(newValue);
     expect(getByRole("button")).toBeInTheDocument();
+  });
+
+  it("do not have role button when is not editable", () => {
+    const { getByRole } = render(
+      <EditableLabel canEdit={false} onEdit={onEdit} value={value} />
+    );
+
+    expect(() => getByRole("button", { name: value })).toThrowError();
+  });
+
+  it("render label instead of value", () => {
+    const { getByRole } = render(
+      <EditableLabel onEdit={onEdit} label={label} value={value} />
+    );
+
+    expect(getByRole("button", { name: label })).toBeInTheDocument();
   });
 });
