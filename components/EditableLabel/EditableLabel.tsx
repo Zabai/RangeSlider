@@ -2,11 +2,12 @@ import { useRef, useState } from "react";
 import styles from "./EditableLabel.module.css";
 
 interface Props {
+  canEdit?: boolean;
   onEdit: (value: string) => unknown;
   value: string;
 }
 
-export function EditableLabel({ onEdit, value }: Props) {
+export function EditableLabel({ canEdit = true, onEdit, value }: Props) {
   const [isEditing, setIsEditing] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -32,7 +33,7 @@ export function EditableLabel({ onEdit, value }: Props) {
   }
 
   return (
-    <label onClick={() => setIsEditing(true)} role="button">
+    <label onClick={() => canEdit && setIsEditing(true)} role="button">
       {value}
     </label>
   );

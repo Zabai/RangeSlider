@@ -39,4 +39,14 @@ describe("Components - Editable label", () => {
     expect(onEdit).toHaveBeenCalledWith(newValue);
     expect(getByRole("button")).toBeInTheDocument();
   });
+
+  it("do not change to input when its not editable", () => {
+    const { getByRole } = render(
+      <EditableLabel canEdit={false} onEdit={onEdit} value={value} />
+    );
+    fireEvent.click(getByRole("button", { name: value }));
+
+    expect(getByRole("button", { name: value })).toBeInTheDocument();
+    expect(() => getByRole("textbox")).toThrowError();
+  });
 });
