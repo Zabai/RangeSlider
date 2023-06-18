@@ -1,0 +1,46 @@
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.input {
+  flex: 0 1 10%;
+  text-align: center;
+}
+
+.rangeSlider {
+  background-color: #f0f0f0;
+  flex: 2 1 80%;
+  height: 20px;
+  position: relative;
+  width: 100%;
+}
+
+.rangeBar {
+  background-color: #333333;
+  height: 4px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  user-select: none;
+}
+
+.thumb {
+  background-color: #333333;
+  border-radius: 50%;
+  height: 14px;
+  margin-left: calc(-14px / 2);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+}
+
+.thumb:hover {
+  cursor: grab;
+  height: 20px;
+  margin-left: calc(-20px / 2);
+  width: 20px;
+}
