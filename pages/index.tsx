@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { Layout } from "../components/Layout/Layout";
 
 export default function Index() {
   return (
-    <>
+    <Layout title="Range Slider">
       <h1>Home page</h1>
 
       <ul>
@@ -13,6 +14,6 @@ export default function Index() {
           <Link href="/exercise2">Exercise 2</Link>
         </li>
       </ul>
-    </>
+    </Layout>
   );
 }
