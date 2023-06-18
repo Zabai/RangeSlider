@@ -41,7 +41,7 @@ export function RangeSlider(props: Props) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.input}>
+      <div className={styles.inputLeft}>
         <EditableLabel
           canEdit={canEditByInput}
           label={`${currentMin} ${currency}`}
@@ -79,7 +79,7 @@ export function RangeSlider(props: Props) {
           tabIndex={0}
         ></div>
       </div>
-      <div className={styles.input}>
+      <div className={styles.inputRight}>
         <EditableLabel
           canEdit={canEditByInput}
           label={`${currentMax} ${currency}`}
