@@ -7,7 +7,16 @@
 
 .input {
   flex: 0 1 15%;
-  text-align: center;
+}
+
+.inputLeft {
+  composes: input;
+  text-align: end;
+}
+
+.inputRight {
+  composes: input;
+  text-align: left;
 }
 
 .rangeSlider {
