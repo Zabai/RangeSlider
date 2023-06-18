@@ -23,7 +23,7 @@ export default function Exercise1() {
   return (
     <Layout title="Range Slider - EX1">
       <h1>Exercise 1</h1>
-      <RangeSlider maxValue={data.max} minValue={data.min} />
+      <RangeSlider currency="€" maxValue={data.max} minValue={data.min} />
       <p>API result: {JSON.stringify(data)}</p>
     </Layout>
   );

@@ -25,6 +25,7 @@ export default function Exercise2() {
     <Layout title="Range Slider - EX2">
       <h1>Exercise 2</h1>
       <RangeSlider
+        currency="€"
         fixedValues={data}
         maxValue={Math.max(...data)}
         minValue={Math.min(...data)}
