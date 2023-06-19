@@ -52,6 +52,10 @@
   width: 14px;
 }
 
+.thumb:active {
+  outline: 0.2rem solid #3498db;
+}
+
 .thumb:hover {
   cursor: grab;
   height: 20px;
