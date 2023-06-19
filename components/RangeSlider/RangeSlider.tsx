@@ -65,6 +65,7 @@ export function RangeSlider(props: Props) {
           ref={minThumbRef}
           role="slider"
           tabIndex={0}
+          title={`This is the current minimum price: ${currentMin}`}
         ></div>
         <div
           aria-label="Maximum price"
@@ -77,6 +78,7 @@ export function RangeSlider(props: Props) {
           ref={maxThumbRef}
           role="slider"
           tabIndex={0}
+          title={`This is the current maximum price: ${currentMax}`}
         ></div>
       </div>
       <div className={styles.inputRight}>
