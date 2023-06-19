@@ -49,7 +49,12 @@ export function RangeSlider(props: Props) {
           value={`${currentMin}`}
         />
       </div>
-      <div className={styles.rangeSlider} ref={sliderRef}>
+      <nav
+        aria-label="Range slider"
+        className={styles.rangeSlider}
+        ref={sliderRef}
+        role="region"
+      >
         <div
           className={styles.rangeBar}
           style={getProgressBarStyles(currentValues, range)}
@@ -80,7 +85,7 @@ export function RangeSlider(props: Props) {
           tabIndex={0}
           title={`This is the current maximum price: ${currentMax}`}
         ></div>
-      </div>
+      </nav>
       <div className={styles.inputRight}>
         <EditableLabel
           canEdit={canEditByInput}
