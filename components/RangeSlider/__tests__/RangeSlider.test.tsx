@@ -1,8 +1,8 @@
 import { fireEvent, render } from "@testing-library/react";
 import { RangeSlider } from "../RangeSlider";
 
-const MIN_ARIA_LABEL = "Minimum price";
-const MAX_ARIA_LABEL = "Maximum price";
+const MIN_THUMB_TID = "min-thumb";
+const MAX_THUMB_TID = "max-thumb";
 
 describe("Components - Range slider", () => {
   const fixedValues = [0, 250, 500, 750, 1000];
@@ -11,18 +11,18 @@ describe("Components - Range slider", () => {
   const step = 1;
 
   it("render component", () => {
-    const { getByLabelText, getByRole } = render(
+    const { getByRole, getByTestId } = render(
       <RangeSlider maxValue={maxValue} minValue={minValue} />
     );
 
     expect(getByRole("button", { name: `${minValue}` })).toBeInTheDocument();
     expect(getByRole("button", { name: `${maxValue}` })).toBeInTheDocument();
-    expect(getByLabelText(MIN_ARIA_LABEL)).toBeInTheDocument();
-    expect(getByLabelText(MAX_ARIA_LABEL)).toBeInTheDocument();
+    expect(getByTestId(MIN_THUMB_TID)).toBeInTheDocument();
+    expect(getByTestId(MAX_THUMB_TID)).toBeInTheDocument();
   });
 
   it("change minimum by input", () => {
-    const { getByLabelText, getByRole } = render(
+    const { getByRole, getByTestId } = render(
       <RangeSlider maxValue={maxValue} minValue={minValue} />
     );
     fireEvent.click(getByRole("button", { name: `${minValue}` }));
@@ -33,14 +33,14 @@ describe("Components - Range slider", () => {
     fireEvent.submit(input);
 
     expect(getByRole("button", { name: `${currentMin}` })).toBeInTheDocument();
-    expect(getByLabelText(MIN_ARIA_LABEL)).toHaveAttribute(
+    expect(getByTestId(MIN_THUMB_TID)).toHaveAttribute(
       "aria-valuenow",
       `${currentMin}`
     );
   });
 
   it("change maximum by input", () => {
-    const { getByLabelText, getByRole } = render(
+    const { getByRole, getByTestId } = render(
       <RangeSlider maxValue={maxValue} minValue={minValue} />
     );
     fireEvent.click(getByRole("button", { name: `${maxValue}` }));
@@ -51,7 +51,7 @@ describe("Components - Range slider", () => {
     fireEvent.submit(input);
 
     expect(getByRole("button", { name: `${currentMax}` })).toBeInTheDocument();
-    expect(getByLabelText(MAX_ARIA_LABEL)).toHaveAttribute(
+    expect(getByTestId(MAX_THUMB_TID)).toHaveAttribute(
       "aria-valuenow",
       `${currentMax}`
     );
@@ -71,45 +71,45 @@ describe("Components - Range slider", () => {
   });
 
   it("change minimum by dragging", () => {
-    const { getByLabelText, getByRole } = render(
+    const { getByRole, getByTestId } = render(
       <RangeSlider maxValue={maxValue} minValue={minValue} />
     );
 
-    const minThumb = getByLabelText(MIN_ARIA_LABEL);
+    const minThumb = getByTestId(MIN_THUMB_TID);
     fireEvent.mouseDown(minThumb);
     fireEvent.mouseMove(minThumb, { clientX: 1 });
     fireEvent.mouseUp(minThumb);
 
     expect(() => getByRole("button", { name: `${minValue}` })).toThrowError();
-    expect(getByLabelText(MIN_ARIA_LABEL)).not.toHaveAttribute(
+    expect(getByTestId(MIN_THUMB_TID)).not.toHaveAttribute(
       "aria-valuenow",
       `${minValue}`
     );
   });
 
   it("change maximum by dragging", () => {
-    const { getByLabelText, getByRole } = render(
+    const { getByRole, getByTestId } = render(
       <RangeSlider maxValue={maxValue} minValue={minValue} />
     );
 
-    const maxThumb = getByLabelText(MAX_ARIA_LABEL);
+    const maxThumb = getByTestId(MAX_THUMB_TID);
     fireEvent.mouseDown(maxThumb);
     fireEvent.mouseMove(maxThumb, { clientX: -1 });
     fireEvent.mouseUp(maxThumb);
 
     expect(() => getByRole("button", { name: `${maxValue}` })).toThrowError();
-    expect(getByLabelText(MAX_ARIA_LABEL)).not.toHaveAttribute(
+    expect(getByTestId(MAX_THUMB_TID)).not.toHaveAttribute(
       "aria-valuenow",
       `${maxValue}`
     );
   });
 
   it("change minimum by keyboard input", () => {
-    const { getByLabelText, getByRole } = render(
+    const { getByRole, getByTestId } = render(
       <RangeSlider maxValue={maxValue} minValue={minValue} step={1} />
     );
 
-    const minThumb = getByLabelText(MIN_ARIA_LABEL);
+    const minThumb = getByTestId(MIN_THUMB_TID);
     minThumb.focus();
     fireEvent.keyDown(minThumb, { key: "ArrowRight" });
     fireEvent.keyDown(minThumb, { key: "Right" });
@@ -117,7 +117,7 @@ describe("Components - Range slider", () => {
     const currentMin = minValue + step * 2;
 
     expect(getByRole("button", { name: `${currentMin}` })).toBeInTheDocument();
-    expect(getByLabelText(MIN_ARIA_LABEL)).toHaveAttribute(
+    expect(getByTestId(MIN_THUMB_TID)).toHaveAttribute(
       "aria-valuenow",
       `${currentMin}`
     );
@@ -126,18 +126,18 @@ describe("Components - Range slider", () => {
     fireEvent.keyDown(minThumb, { key: "Left" });
 
     expect(getByRole("button", { name: `${minValue}` })).toBeInTheDocument();
-    expect(getByLabelText(MIN_ARIA_LABEL)).toHaveAttribute(
+    expect(getByTestId(MIN_THUMB_TID)).toHaveAttribute(
       "aria-valuenow",
       `${minValue}`
     );
   });
 
   it("change maximum by keyboard input", () => {
-    const { getByLabelText, getByRole } = render(
+    const { getByRole, getByTestId } = render(
       <RangeSlider maxValue={maxValue} minValue={minValue} step={1} />
     );
 
-    const maxThumb = getByLabelText(MAX_ARIA_LABEL);
+    const maxThumb = getByTestId(MAX_THUMB_TID);
     maxThumb.focus();
     fireEvent.keyDown(maxThumb, { key: "ArrowLeft" });
     fireEvent.keyDown(maxThumb, { key: "Left" });
@@ -145,7 +145,7 @@ describe("Components - Range slider", () => {
     const currentMax = maxValue - step * 2;
 
     expect(getByRole("button", { name: `${currentMax}` })).toBeInTheDocument();
-    expect(getByLabelText(MAX_ARIA_LABEL)).toHaveAttribute(
+    expect(getByTestId(MAX_THUMB_TID)).toHaveAttribute(
       "aria-valuenow",
       `${currentMax}`
     );
@@ -154,7 +154,7 @@ describe("Components - Range slider", () => {
     fireEvent.keyDown(maxThumb, { key: "Right" });
 
     expect(getByRole("button", { name: `${maxValue}` })).toBeInTheDocument();
-    expect(getByLabelText(MAX_ARIA_LABEL)).toHaveAttribute(
+    expect(getByTestId(MAX_THUMB_TID)).toHaveAttribute(
       "aria-valuenow",
       `${maxValue}`
     );

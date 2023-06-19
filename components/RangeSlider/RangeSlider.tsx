@@ -65,6 +65,7 @@ export function RangeSlider(props: Props) {
           aria-valuemin={minValue}
           aria-valuenow={currentMin}
           className={styles.thumb}
+          data-testid="min-thumb"
           style={getMinThumbStyles(currentValues, range, isDraggingMin)}
           onMouseDown={() => setIsDraggingMin(true)}
           ref={minThumbRef}
@@ -78,6 +79,7 @@ export function RangeSlider(props: Props) {
           aria-valuemin={minValue}
           aria-valuenow={currentMax}
           className={styles.thumb}
+          data-testid="max-thumb"
           style={getMaxThumbStyles(currentValues, range, isDraggingMax)}
           onMouseDown={() => setIsDraggingMax(true)}
           ref={maxThumbRef}
