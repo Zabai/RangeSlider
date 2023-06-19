@@ -9,7 +9,7 @@ import {
 } from "../utils/sliderUtils";
 import { getClosestValueInArray } from "../../../utils/array";
 
-const DEFAULT_GAP = 10;
+const DEFAULT_GAP = 1;
 const DEFAULT_STEP = 1;
 
 export function useRangeSlider({
