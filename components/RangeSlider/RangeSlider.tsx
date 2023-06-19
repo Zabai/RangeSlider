@@ -49,9 +49,15 @@ export function RangeSlider(props: Props) {
           value={`${currentMin}`}
         />
       </div>
-      <div className={styles.rangeSlider} ref={sliderRef}>
+      <nav
+        aria-label="Range slider"
+        className={styles.rangeSlider}
+        ref={sliderRef}
+        role="region"
+      >
+        <div className={styles.rangeBar} />
         <div
-          className={styles.rangeBar}
+          className={styles.rangeBarProgress}
           style={getProgressBarStyles(currentValues, range)}
         ></div>
         <div
@@ -60,11 +66,13 @@ export function RangeSlider(props: Props) {
           aria-valuemin={minValue}
           aria-valuenow={currentMin}
           className={styles.thumb}
+          data-testid="min-thumb"
           style={getMinThumbStyles(currentValues, range, isDraggingMin)}
           onMouseDown={() => setIsDraggingMin(true)}
           ref={minThumbRef}
           role="slider"
           tabIndex={0}
+          title={`This is the current minimum price: ${currentMin}`}
         ></div>
         <div
           aria-label="Maximum price"
@@ -72,13 +80,15 @@ export function RangeSlider(props: Props) {
           aria-valuemin={minValue}
           aria-valuenow={currentMax}
           className={styles.thumb}
+          data-testid="max-thumb"
           style={getMaxThumbStyles(currentValues, range, isDraggingMax)}
           onMouseDown={() => setIsDraggingMax(true)}
           ref={maxThumbRef}
           role="slider"
           tabIndex={0}
+          title={`This is the current maximum price: ${currentMax}`}
         ></div>
-      </div>
+      </nav>
       <div className={styles.inputRight}>
         <EditableLabel
           canEdit={canEditByInput}
