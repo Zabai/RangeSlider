@@ -55,8 +55,9 @@ export function RangeSlider(props: Props) {
         ref={sliderRef}
         role="region"
       >
+        <div className={styles.rangeBar} />
         <div
-          className={styles.rangeBar}
+          className={styles.rangeBarProgress}
           style={getProgressBarStyles(currentValues, range)}
         ></div>
         <div

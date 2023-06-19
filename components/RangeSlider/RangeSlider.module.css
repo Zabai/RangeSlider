@@ -20,7 +20,6 @@
 }
 
 .rangeSlider {
-  background-color: #f0f0f0;
   flex: 2 1 70%;
   height: 20px;
   position: relative;
@@ -28,12 +27,18 @@
 }
 
 .rangeBar {
-  background-color: #333333;
+  background-color: #ecf0f1;
   height: 4px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   user-select: none;
+  width: 100%;
+}
+
+.rangeBarProgress {
+  background-color: #34495e;
+  composes: rangeBar;
 }
 
 .thumb {
