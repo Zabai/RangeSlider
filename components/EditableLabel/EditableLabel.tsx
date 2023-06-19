@@ -27,6 +27,7 @@ export function EditableLabel({ canEdit = true, label, onEdit, value }: Props) {
           autoFocus
           defaultValue={value}
           ref={inputRef}
+          tabIndex={0}
           type="text"
         />
       </form>
